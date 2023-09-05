@@ -6,6 +6,7 @@ const mainController = {
       const cards = await dataMapper.getAllCards();
       res.render('cardList', {
         cards,
+        deck: req.session.deck,
         title: 'Liste des cartes'
       });
     } catch (error) {

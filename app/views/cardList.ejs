@@ -2,6 +2,10 @@
 
 <h1><%= title %></h1>
 
+<% if(cards.length ===0){ %>
+  <p>Votre deck est vide</p>
+<% } %>
+
 <div class="cardsContainer">
   <% cards.forEach( (card) => { %>
 
@@ -10,7 +14,13 @@
         <img src="/visuals/<%= card.visual_name %>" alt="<%= card.name %> illustration">
         <p class="cardName"><%= card.name %></p>
       </a>
-      <a class="link--addCard" title="Ajouter au deck" href="#">[ + ]</a>
+
+      <% if(deck.find((deckCard) => deckCard === card.id)){ %>
+        <a class="link--deleteCard" title="Ajouter au deck" href="/deck/delete/<%= card.id %>">[ - ]</a>
+      <% } else { %>
+        <a class="link--addCard" title="Ajouter au deck" href="/deck/add/<%= card.id %>">[ + ]</a>
+      <% } %>
+
     </div>
 
   <% }) %>
