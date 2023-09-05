@@ -3,7 +3,9 @@ const deckSession = (req, res, next) => {
         req.session.deck = [];
         console.log('Initialisation du deck' + req.session.deck);
     }
+
+    res.locals.deck = req.session.deck;
     next();
-}
+};
 
 module.exports = deckSession;

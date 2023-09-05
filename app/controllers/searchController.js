@@ -13,7 +13,6 @@ const searchController = {
 
       res.render('cardList', {
         cards,
-        deck: req.session.deck,
         title: `Carte d'élément ${elementType}`
       })
     } catch (error) {
@@ -30,7 +29,6 @@ const searchController = {
 
       res.render('cardList', {
         cards,
-        deck: req.session.deck,
         title: `Carte de niveau ${levelNumber}`
       })
       
@@ -42,6 +40,17 @@ const searchController = {
 
   resultByValuePage: async(req, res) => {
     try {
+      const direction = req.query.direction;
+      console.log(`value_${direction}`);
+      const directionValue = Number(req.query.value);
+      console.log(`valeur de direction : ${directionValue}` );
+
+      const cards = await dataMapper.getCardsByParams(`value_${direction}`, directionValue);
+
+      res.render('cardList', {
+        cards,
+        title: `Carte ${direction} de valeur ${directionValue}`
+      })
       
     } catch (error) {
       console.error(error);
@@ -51,6 +60,14 @@ const searchController = {
 
   resultByNamePage: async(req, res) => {
     try {
+      const name = req.query.name.toLowerCase();
+
+      cards = await dataMapper.getCardsByName(name);
+
+      res.render('cardList', {
+        cards,
+        title: `Résultat pour : ${name}`
+      })
       
     } catch (error) {
       console.error(error);

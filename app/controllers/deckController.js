@@ -20,7 +20,6 @@ const deckController = {
             // 3. Rendy de la liste de carte présent dans notre deck
             res.render('cardList', {
                 cards: deck,
-                deck: req.session.deck,
                 title: 'Votre Deck'
             })
         } catch (error) {
