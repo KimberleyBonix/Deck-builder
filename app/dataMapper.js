@@ -20,9 +20,9 @@ const dataMapper = {
     return result.rows[0];
   },
 
-  async getCardsByElement(element) {
+  async getCardsByParams(params, element) {
     const query = {
-      text: "SELECT * FROM card WHERE element = $1",
+      text: `SELECT * FROM card WHERE ${params} = $1`,
       values: [element]
     }
     const result = await db.query(query);

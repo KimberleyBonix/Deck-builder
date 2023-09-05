@@ -75,7 +75,7 @@ const deckController = {
             res.redirect('/deck')
         } catch (error) {
             console.error(error);
-      res.status(500).send(`An error occured with the database :\n${error.message}`);
+            res.status(500).send(`An error occured with the database :\n${error.message}`);
         }
     },
 }
