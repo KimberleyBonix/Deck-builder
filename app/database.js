@@ -1,7 +1,8 @@
-const { Client } = require('pg');
+const { Pool } = require('pg')
+require('dotenv').config()
 
-const client = new Client(process.env.PG_URL);
+const pool = new Pool({
+  connectionString: "postgres://default:c1kCPgsMK8Ev@ep-polished-lake-75574727-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb?sslmode=require",
+})
 
-client.connect();
-
-module.exports = client;
+module.exports = pool;
