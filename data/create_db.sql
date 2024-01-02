@@ -1,4 +1,4 @@
--- Cards
+BEGIN;
 
 DROP TABLE IF EXISTS "card";
 
@@ -125,3 +125,6 @@ INSERT INTO "card"("name", "element", "level", "value_north", "value_east", "val
 ('Edea',null,10, 10,0, 3, 3, 'Edea.jpg' ), 
 ('Seifer',null,10, 6,9, 10, 4, 'Seifer.jpg' ), 
 ('Squall',null,10, 10,4, 6, 9, 'Squall.jpg' );
+
+
+COMMIT;
