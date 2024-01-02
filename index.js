@@ -13,7 +13,7 @@ const deckSession = require('./app/middleware/deckSession');
 
 // View configuration
 app.set('view engine', 'ejs');
-app.set('views', './app/views');
+app.set('views', 'views');
 
 app.use(express.static('public'));
 
