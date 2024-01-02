@@ -2,8 +2,9 @@
 
 <h1><%= title %></h1>
 
+<!-- Alterative view if the deck is empty -->
 <% if(cards.length ===0){ %>
-  <p>Votre deck est vide</p>
+  <p>Your deck is empty</p>
 <% } %>
 
 <div class="cardsContainer">
@@ -12,7 +13,7 @@
     <div class="card">
       <a href="/cards/<%= card.id %>">
         <img src="/visuals/<%= card.visual_name %>" alt="<%= card.name %> illustration">
-        <p class="cardName"><%= card.name %> (niv. <%= card.level %>)</p>
+        <p class="cardName"><%= card.name %> (lvl. <%= card.level %>)</p>
       </a>
 
       <% if(deck.find((deckCard) => deckCard === card.id)){ %>

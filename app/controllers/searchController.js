@@ -1,19 +1,25 @@
 const dataMapper = require("../dataMapper");
 
 const searchController = {
-  searchPage: (req, res) => {
+
+  // Search page
+  searchPage: (_, res) => {
     res.render('search');
   },
 
+  // Card result by element searched
   resultByElementPage: async(req, res) => {
     try {
+      // 1. Get the query from the form
       const elementType = req.query.element;
 
+      // 2. Customize the request with the query
       const cards = await dataMapper.getCardsByParams('element', elementType);
 
+      // 3. Render the results
       res.render('cardList', {
         cards,
-        title: `Carte d'élément ${elementType}`
+        title: `${elementType} element card`
       })
     } catch (error) {
       console.error(error);
@@ -21,6 +27,7 @@ const searchController = {
     }
   },
 
+  // Card result by level searched
   resultByLevelPage: async(req, res) => {
     try {
       const levelNumber = req.query.level;
@@ -29,7 +36,7 @@ const searchController = {
 
       res.render('cardList', {
         cards,
-        title: `Carte de niveau ${levelNumber}`
+        title: `Level ${levelNumber} card`
       })
       
     } catch (error) {
@@ -38,18 +45,18 @@ const searchController = {
     }
   },
 
+  // Card result by value
   resultByValuePage: async(req, res) => {
     try {
       const direction = req.query.direction;
-      console.log(`value_${direction}`);
+      // Parsing the direction, the value must be a number
       const directionValue = Number(req.query.value);
-      console.log(`valeur de direction : ${directionValue}` );
 
       const cards = await dataMapper.getCardsByParams(`value_${direction}`, directionValue);
 
       res.render('cardList', {
         cards,
-        title: `Carte ${direction} de valeur ${directionValue}`
+        title: `${direction} ${directionValue} card`
       })
       
     } catch (error) {
@@ -58,6 +65,7 @@ const searchController = {
     }
   },
 
+  // Card result by name
   resultByNamePage: async(req, res) => {
     try {
       const name = req.query.name.toLowerCase();
@@ -66,7 +74,7 @@ const searchController = {
 
       res.render('cardList', {
         cards,
-        title: `Résultat pour : ${name}`
+        title: `Result(s) for : ${name}`
       })
       
     } catch (error) {

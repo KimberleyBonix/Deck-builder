@@ -1,57 +1,57 @@
 <%- include('partials/header') %>
 
-<h1>Chercher des cartes</h1>
+<h1>Search cards</h1>
 
-<h3>Par élément</h3>
+<h3>By element</h3>
 <form action="/search/element" method="get">
   <select name="element" id="element">
-      <option value="null">aucun</option>
-    <option value="tonnerre">tonnerre</option>
-    <option value="terre">terre</option>
-    <option value="glace">glace</option>
-    <option value="vent">vent</option>
-    <option value="poison">poison</option>
-    <option value="feu">feu</option>
-    <option value="eau">eau</option>
-    <option value="sacré">sacré</option>
+      <option value="null">None</option>
+    <option value="tonnerre">Lightning</option>
+    <option value="terre">Earth</option>
+    <option value="glace">Ice</option>
+    <option value="vent">Wind</option>
+    <option value="poison">Poison</option>
+    <option value="feu">Fire</option>
+    <option value="eau">Water</option>
+    <option value="sacré">Holy</option>
   </select>
-  <input type="submit" value="Chercher">
+  <input type="submit" value="Search">
 </form>
 
 <hr>
 
-<h3>Par Niveau</h3>
+<h3>By level</h3>
 <form action="/search/level" method="get">
-  <label for="level">Niveau</label>
+  <label for="level">Level</label>
   <input type="number" name="level" id="level" min=0 max=10 value=0>
 
-  <input type="submit" value="Chercher">
+  <input type="submit" value="Search">
 </form>
 
 <hr>
 
-<h3>Par valeur</h3>
+<h3>By value</h3>
 <form action="/search/values" method="get">
   <label for="direction">Direction</label>
   <select name="direction" id="direction">
-    <option value="north">Nord</option>
-    <option value="east">Est</option>
-    <option value="south">Sud</option>
-    <option value="west">Ouest</option>
+    <option value="north">North</option>
+    <option value="east">East</option>
+    <option value="south">South</option>
+    <option value="west">West</option>
   </select>
   
-  <label for="value">Valeur</label>
+  <label for="value">Value</label>
   <input type="number" name="value" id="value" min=0 max=10 value=0>
 
-  <input type="submit" value="Chercher">
+  <input type="submit" value="Search">
 </form>
 
 <hr>
 
-<h3>Par nom</h3>
+<h3>By name</h3>
 <form action="/search/name" method="get">
   <input type="text" name="name" id="name">
-  <input type="submit" value="Chercher">
+  <input type="submit" value="Search">
 </form>
 
 <%- include('partials/footer') %>

@@ -1,26 +1,28 @@
 const dataMapper = require('../dataMapper.js');
 
 const deckController = {
+
+    // Deck Page
+    // We want to fetch everycard that match the ID in the session.deck
     deckPage: async(req, res) => {
         try {
-            // On veut réccupèrer chaque carte qui correspond aux ID dans session.deck
-            // 1. On créé une variable où stocker les cartes du deck
+            // 1. Create a variable where to store the deck cards
             const deck = [];
             
-            // 2.1 On regarde s'il y a des cartes dans le deck
+            // 2.1 Is there card is the deck?
             if (req.session.deck.length !== 0){
-                // 2.2 Pour chaque id de session.deck, on réccupère la carte correspondant 
+                // 2.2 For each session.deck id, we get the matching card 
                 for(const id of req.session.deck) {
                 const addCard = await dataMapper.getCard(id);
-                // 2.3 on ajoute la carte à notre deck
+                // 2.3 Add the card to the deck
                 deck.push(addCard);
                 }
             }
 
-            // 3. Rendy de la liste de carte présent dans notre deck
+            // 3. Render the card list that contain the deck
             res.render('cardList', {
                 cards: deck,
-                title: 'Votre Deck'
+                title: 'Your deck'
             })
         } catch (error) {
             console.error(error);
@@ -28,25 +30,27 @@ const deckController = {
         }
     }, 
 
+    // Add a card to the deck
+    // We want to select a card from the list and add it to the deck and store them in session
     addCardToDeck: async(req, res) => {
         try {
-            // 1.1 On réccupère l'id de la carte à ajouter au session.deck
+            // 1.1 Get the card ID to add from the param
             const addId = Number(req.params.id);
-            // 1.2 et on s'assure que l'ID correspond à une carte existante
+            // 1.2 Check if the card exists
             await dataMapper.getCard(addId);
 
-            // 2.1 La carte est-elle déjà présente dans le deck ?
+            // 2.1 Is the card already in the deck?
             const deckStatut = req.session.deck.find((card) => (card === addId));
 
-            // 2.2 Si non présent (undifined), on l'ajoute
+            // 2.2 If not, add it
             if(!deckStatut){
                 req.session.deck.push(addId);
-                console.log(`La carte #${addId} a été ajouté au deck`)
+                console.log(`The card #${addId} was added to your deck`)
             }
 
             console.log('Deck : ' + req.session.deck);
             
-            // 3. Redirection vers le deck
+            // 3. Deck redirection when added
             res.redirect('/deck')
         } catch (error) {
             console.error(error);
@@ -54,23 +58,24 @@ const deckController = {
         }
     },
 
+    // Remove a card from the deck
     deleteCardOfDeck: async(req, res) => {
         try {
-            // 1. On réccupère l'id de la carte à supprimer de session.deck
+            // 1. Get the card if from param
             const deleteId = Number(req.params.id);
 
-            // 2.1 On regarde si l'id est bien contenu dans session.deck
+            // 2.1 Check if the id is the session
             const deckStatus = req.session.deck.includes(deleteId);
 
-            // 2.2 Si oui, on la retire de session.deck
+            // 2.2 If yes, remove it by filtering
             if(deckStatus) {
                 req.session.deck = req.session.deck.filter((card) => card !== deleteId);
-                console.log(`La carte #${deleteId} a été retiré du deck`);
+                console.log(`The card #${deleteId} was remove from your deck`);
             }
 
             console.log('Deck : ' + req.session.deck);
 
-            // 3. Redirection vers le deck
+            // 3. Deck redirection
             res.redirect('/deck')
         } catch (error) {
             console.error(error);
