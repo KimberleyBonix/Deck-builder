@@ -2,6 +2,7 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const session = require('express-session');
+const path = require('path');
 dotenv.config();
 
 const router = require('./app/router');
@@ -13,9 +14,9 @@ const deckSession = require('./app/middleware/deckSession');
 
 // View configuration
 app.set('view engine', 'ejs');
-app.set('views', 'views');
+app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Session
 app.use(session({
