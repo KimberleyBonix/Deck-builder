@@ -20,7 +20,7 @@ const deckController = {
             }
 
             // 3. Render the card list that contain the deck
-            res.render('cardList', {
+            res.render('index', {
                 cards: deck,
                 title: 'Your deck'
             })

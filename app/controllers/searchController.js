@@ -17,7 +17,7 @@ const searchController = {
       const cards = await dataMapper.getCardsByParams('element', elementType);
 
       // 3. Render the results
-      res.render('cardList', {
+      res.render('index', {
         cards,
         title: `${elementType} element card`
       })
@@ -34,7 +34,7 @@ const searchController = {
 
       const cards = await dataMapper.getCardsByParams('level', levelNumber);
 
-      res.render('cardList', {
+      res.render('index', {
         cards,
         title: `Level ${levelNumber} card`
       })
@@ -54,7 +54,7 @@ const searchController = {
 
       const cards = await dataMapper.getCardsByParams(`value_${direction}`, directionValue);
 
-      res.render('cardList', {
+      res.render('index', {
         cards,
         title: `${direction} ${directionValue} card`
       })
@@ -72,7 +72,7 @@ const searchController = {
 
       cards = await dataMapper.getCardsByName(name);
 
-      res.render('cardList', {
+      res.render('index', {
         cards,
         title: `Result(s) for : ${name}`
       })

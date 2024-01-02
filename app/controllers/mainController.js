@@ -9,7 +9,7 @@ const mainController = {
       const cards = await dataMapper.getAllCards();
 
       // Build an response object
-      res.render('cardList', {
+      res.render('index', {
         cards,
         title: 'Cards list'
       });
